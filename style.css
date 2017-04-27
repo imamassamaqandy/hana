@@ -1,0 +1,1388 @@
+/*
+Theme Name:     Hana
+Theme URI:      http://imamherlambang.net/theme/hana
+Description:    Clean and neat theme with 3 differents layout. Hana also support Theme Options.
+Author:         Imam Herlambang
+Author URI:     http://ImamHerlambang.net
+Version:        1.0
+Tags:           one-column, two-columns, right-sidebar, left-sidebar, fixed-width, custom-header, custom-background, threaded-comments, custom-menu, theme-options, full-width-template, sticky-post, featured-images
+
+License:        GNU General Public License v3
+License URI:    http://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+/*==============================================================================
+Table of Contents
+     1. Import Twitter Bootstrap Style and Google Fonts
+     2. Reset Style
+     3. Main Layout
+     4. Header
+     5. Navigation
+     6. Breadcrumbs
+     7. Content
+     8. Comments
+     9. Post Navigation
+    10. Widgets
+    11. Footer
+    12. Helper Class & Override Bootstrap Style
+================================================================================
+Other Notes
+
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+and Blueprint http://www.blueprintcss.org/
+================================================================================ */
+
+/* =============================================================================
+   1.   Import Twitter Bootstrap Style and Google Fonts
+   ============================================================================= */
+
+@import url('css/bootstrap.min.css'); 
+@import url('css/bootstrap-responsive.min.css');
+
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Oswald Regular'),
+         local('Oswald-Regular'),
+         url('//themes.googleusercontent.com/static/fonts/oswald/v7/-g5pDUSRgvxvOl5u-a_WHw.woff')
+         format('woff');
+}
+
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Oswald Bold'),
+         local('Oswald-Bold'),
+         url('//themes.googleusercontent.com/static/fonts/oswald/v7/bH7276GfdCjMjApa_dkG6T8E0i7KZn-EPnyo3HZu7kw.woff')
+         format('woff');
+}
+
+
+
+/* =============================================================================
+   2.   Reset Style
+   ============================================================================= */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    border: 0;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+html {
+    font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+    overflow-y: scroll; /* Keeps page centred in all browsers regardless of content height */
+    -webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+    -ms-text-size-adjust: 100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
+
+body {
+    background: #fff;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table { /* tables still need 'cellspacing="0"' in the markup */
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption, th, td {
+    font-weight: normal;
+    text-align: left;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: "";
+}
+
+blockquote, q {
+    quotes: "" "";
+}
+
+a:focus {
+    outline: medium none;
+    text-decoration: none;
+}
+
+a:hover,
+a:active { /* Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test */
+    outline: 0;
+}
+
+a img {
+    border: 0;
+}
+
+
+
+/*  ----- Global -----  */
+
+body,
+button,
+input,
+select,
+textarea {
+    color: #000000;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+
+/*  ----- Headings -----  */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    clear: both;
+}
+
+hr {
+    background-color: #ccc;
+    border: 0;
+    height: 1px;
+    margin-bottom: 1.5em;
+}
+
+/* Text elements */
+p {
+    margin-bottom: 1.5em;
+    line-height: 26px;
+}
+
+ul,
+ol {
+    margin: 0 0 1.5em 3em;
+}
+
+ul {
+    list-style: disc;
+}
+
+/* Additional Style */
+ul li {
+    line-height: 26px;
+}
+
+ol li {
+    line-height: 26px;
+}
+
+ul li ul {
+    margin-bottom: 5px;
+}
+
+ol li ol {
+    margin-bottom: 5px;
+}
+
+ol {
+    list-style: decimal;
+}
+
+li > ul {
+    margin-bottom: 0;
+    margin-left: 1.1em; /* was 1.5em */
+}
+
+li > ol {
+    margin-left: 1.5em;
+}
+
+/* End of Additional Style */
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin: 0 1.5em 1.5em;
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+dfn,
+cite,
+em,
+i {
+    font-style: italic;
+}
+
+blockquote {
+    margin: 0 1.5em;
+}
+
+address {
+    margin: 0 0 1.5em;
+}
+
+pre {
+    background: #eee;
+    font-family: "Courier 10 Pitch", Courier, monospace;
+    font-size: 15px;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    padding: 1.6em;
+    overflow: auto;
+    max-width: 100%;
+}
+
+code,
+kbd,
+tt,
+var {
+    font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+abbr,
+acronym {
+    border-bottom: 1px dotted #666;
+    cursor: help;
+}
+
+mark,
+ins {
+    background: #fff9c0;
+    text-decoration: none;
+}
+
+sup,
+sub {
+    font-size: 75%;
+    height: 0;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    bottom: 1ex;
+}
+
+sub {
+    top: .5ex;
+}
+
+small {
+    font-size: 75%;
+}
+
+big {
+    font-size: 125%;
+}
+
+figure {
+    margin: 0;
+}
+
+table {
+    margin: 0 0 1.5em;
+    width: 100%;
+}
+
+th {
+    font-weight: bold;
+}
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* Corrects font size not being inherited in all browsers */
+    margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+    vertical-align: baseline; /* Improves appearance and consistency in all browsers */
+    *vertical-align: middle; /* Improves appearance and consistency in all browsers */
+}
+
+button,
+input {
+    line-height: normal; /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
+    *overflow: visible;  /* Corrects inner spacing displayed oddly in IE6/7 */
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    border: 1px solid #ccc;
+    border-color: #ccc #ccc #bbb #ccc;
+    border-radius: 3px;
+    background: #e6e6e6;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
+    box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, .8);
+    cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
+    -webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: .6em 1em .4em;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+button:hover,
+html input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+    border-color: #ccc #bbb #aaa #bbb;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
+    -moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
+    box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
+}
+
+button:focus,
+html input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+html input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+    border-color: #aaa #bbb #bbb #bbb;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow:    inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+    box-shadow:         inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* Addresses box sizing set to content-box in IE8/9 */
+    padding: 0; /* Addresses excess padding in IE8/9 */
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
+    -webkit-box-sizing: content-box; /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
+    -moz-box-sizing:    content-box;
+    box-sizing:         content-box;
+}
+
+input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+    -webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+    border: 0;
+    padding: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea {
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+    color: #111;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"] {
+    padding: 3px;
+}
+
+textarea {
+    overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
+    padding-left: 3px;
+    vertical-align: top; /* Improves readability and alignment in all browsers */
+    width: 98%;
+}
+
+
+
+/*  ----- Links -----  */
+
+a,
+a:visited,
+a:active {
+    color: #002149;
+}
+
+a:hover,
+a:hover {
+    color: #006FF4;
+    text-decoration: none;
+}
+
+
+
+/*  ----- Text meant only for screen readers -----   */
+
+.assistive-text {
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+}
+
+
+
+/*  ----- Clearing -----   */
+
+.clear:before,
+.clear:after,
+[class*="content"]:before,
+[class*="content"]:after,
+[class*="site"]:before,
+[class*="site"]:after {
+    content: '';
+    display: table;
+}
+
+.clear:after,
+[class*="content"]:after,
+[class*="site"]:after {
+    clear: both;
+}
+
+
+
+/* =============================================================================
+   3.   Main Layout
+   ============================================================================= */
+
+#page {
+    overflow: hidden;
+    background-color: #fff;
+    padding: 20px;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    min-height: 500px;
+}
+
+/* =============================================================================
+   4.   Header
+   ============================================================================= */
+
+#title .site-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 60px;
+    -ms-word-wrap: break-word;
+        word-wrap: break-word;
+}
+
+#title .site-description {
+    font-size: 16px;
+    line-height: 21px;
+    margin: 5px 0 10px 0;
+}
+
+#site-header {
+    background-color: #002149;
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+#site-header a {
+    display: block;
+}
+
+#site-header img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+
+
+/* =============================================================================
+   5.   Navigation
+   ============================================================================= */
+
+.navbar .navbar-inner {
+    padding-left: 0;
+    padding-right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+
+
+/*  ----- Menu Elements -----  */
+
+.navbar .nav > li > a {
+    color: #002149;
+    background-color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: none;
+    display: block;
+    padding: 10px 15px;
+}
+
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a:focus,
+.navbar .nav > li.dropdown.active > .dropdown-toggle,
+.navbar .nav > li.dropdown.open > .dropdown-toggle,
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus,
+.navbar .nav .dropdown-menu li:hover > a,
+.navbar .nav .dropdown-menu li:focus > a {
+    color: #fff;
+    background-color: #002149;
+    text-decoration: none;
+    text-shadow: none;
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+    -webkit-transition: background-color 0.3s ease-in-out 0s;
+         -0-transition: background-color 0.3s ease-in-out 0s;
+       -moz-transition: background-color 0.3s ease-in-out 0s;
+            transition: background-color 0.3s ease-in-out 0s;
+}
+
+.navbar .nav > li.dropdown .dropdown-toggle .caret {
+    border-top-color: #002149;
+    border-bottom-color: #002149;
+}
+
+.navbar .nav > li.dropdown .dropdown-toggle:hover .caret,
+.navbar .nav > li.dropdown.active .dropdown-toggle .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.navbar .nav .dropdown-submenu > a:after {
+    border-left-color: #002149;
+}
+
+.navbar .nav .dropdown-submenu:hover > a:after {
+    border-left-color: #fff;
+}
+
+
+
+/*  ----- Dropdown Menu -----  */
+
+.navbar .nav .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.navbar .nav .dropdown-menu {
+    margin: 0 0 0 -1px;
+    padding: 0;
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+    font-weight: bold;
+}
+
+.navbar .nav .dropdown-submenu .dropdown-menu,
+.navbar .nav .dropdown-submenu:hover .dropdown-menu .dropdown-menu,
+.navbar .nav .dropdown-submenu .dropdown-submenu:hover .dropdown-menu .dropdown-menu {
+    margin: -1px 0 0 0 !important;
+    display: none !important;
+}
+
+.navbar .nav .dropdown-submenu:hover .dropdown-menu,
+.navbar .nav .dropdown-submenu .dropdown-submenu:hover .dropdown-menu,
+.navbar .nav .dropdown-submenu .dropdown-submenu .dropdown-submenu:hover .dropdown-menu {
+    display: block !important;
+}
+
+.navbar .nav .dropdown-menu > li > a {
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+
+
+/*  ----- Sub Menu -----  */
+
+.navbar .nav .dropdown-menu > li > a {
+    color: #002149;
+    background: #fff;
+}
+
+.navbar .nav .dropdown-menu > li > a:hover{
+    color: #fff;
+    background: #002149;
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+            border-radius: 0;
+}
+
+
+
+/* =============================================================================
+   6.   Breadcrumbs
+   ============================================================================= */
+
+
+
+/* =============================================================================
+   7.   Content
+   ============================================================================= */
+
+#main {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#content {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+    #main #content,
+    [class*="span"] {
+        float: left;
+    }
+}
+
+#main #content article[class*="post"] {
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0 8px 6px -6px #ddd;
+       -moz-box-shadow: 0 8px 6px -6px #ddd;
+            box-shadow: 0 8px 6px -6px #ddd;
+}
+
+/*  ----- Sticky Post -----  */
+
+.home #main #content article.sticky {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    border: 1px solid #006FF4;
+}
+
+.home #main #content article.sticky header {
+    border-bottom: 1px solid #006FF4;
+}
+
+.home #main #content article.sticky footer {
+    border-top: 1px solid #006FF4;
+}
+
+#main #content header.entry-header {
+    border-bottom: 1px solid #ddd;
+}
+
+#main #content header.page-header {
+    border: none;
+}
+
+/*  ----- Author Box -----  */
+
+#main #content .page-header {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#main #content .page-header h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+#main #content .page-header .author-description {
+    margin: 20px 15px 5px 15px;
+}
+
+#main #content .page-header .author-description .desc {
+    margin-top: 10px;
+    -ms-word-wrap: break-word;
+        word-wrap: break-word;
+}
+
+#main #content .entry-title,
+#main #content .page-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    margin: 5px 15px;
+    -ms-word-wrap: break-word;
+        word-wrap: break-word;
+}
+
+#main #content header .entry-meta,
+#main #content header .taxonomy-description {
+    margin: 0 15px 5px 15px;
+}
+
+#main #content header .taxonomy-description p,
+#main #content header .author-description .desc p {
+    margin: 0;
+    line-height: 21px;
+    text-align: justify;
+}
+
+#content .entry-thumbnail {
+    float: left;
+    margin: 21px 15px 15px 15px;
+    display: inline;
+}
+
+#content .entry-thumbnail img {
+    width: 180px;
+    height: 180px;
+}
+
+.home #main #content .entry-content {
+    text-align: justify;
+}
+
+/*  ----- Post Format and Others -----  */
+
+#content .entry-content .twitter-tweet {
+    width: 100%;
+}
+
+.home #content .format-aside .entry-content p,
+.home #content .format-link .entry-content p,
+.home #content .format-quote .entry-content blockquote {
+    margin: 0 !important;
+}
+
+#content .entry-content,
+#content .entry-summary {
+    margin: 15px;
+    -ms-word-wrap: break-word;
+        word-wrap: break-word;
+}
+
+#main #content footer.entry-meta {
+    background-color: #f7f7f7;
+    padding: 10px 15px;
+    text-align: justify;
+    border-top: 1px solid #ddd;
+}
+
+#main #content footer.entry-meta .tags-links {
+    padding-left: 5px;
+}
+
+#main #content footer.entry-meta .tags-links .tag-icon {
+    background: url('img/glyphicons-halflings.png') no-repeat -25px -49px;
+    width: 15px;
+    height: 13px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#main #content footer.entry-meta .permalink a {
+    background: url("img/glyphicons-halflings.png") no-repeat -120px -73px;
+    width: 14px;
+    height: 12px;
+    display: block;
+    margin-top: 5px;
+}
+
+#main #content .page-links {
+    float: left;
+    clear: both;
+}
+
+/*  ----- Elements -----  */
+
+#content .entry-content h1,
+#content .entry-content h2,
+#content .entry-content h3,
+#content .entry-content h4,
+#content .entry-content h5,
+#content .entry-content h6 {
+    margin-bottom: 15px;
+}
+#content .entry-content h1 {
+    font-size: 24px;
+    line-height: 36px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+#content .entry-content h2 {
+    font-size: 22px;
+    line-height: 34px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+#content .entry-content h3 {
+    font-size: 20px;
+    line-height: 30px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+#content .entry-content h4 {
+    font-size: 18px;
+    line-height: 28px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+#content .entry-content h5 {
+    font-size: 16px;
+    line-height: 26px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+#content .entry-content h6 {
+    font-size: 14px;
+    line-height: 22px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+#main #content blockquote {
+    border-left: 3px solid #ddd;
+    margin: 0 0 23px 0;
+    padding-left: 15px;
+}
+
+#main #content blockquote p {
+    font-size: 15.5px;
+    font-weight: 300;
+    line-height: 22px;
+    text-align: justify;
+}
+
+#main #content img {
+    padding: 5px;
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    max-width: 100%;
+}
+
+#main #content table,
+#main #content td {
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    max-width: 100%;
+}
+
+#main #content table tr th{
+    background-color: #f7f7f7;
+    padding: 7px;
+    border-right: 1px solid #ddd;
+}
+
+#main #content tr.even {
+    background-color: #f7f7f7;
+}
+
+#main #content tr td {
+    padding: 7px;
+}
+
+@media (max-width: 320px) {
+    #main #content div.wp-caption[style] {
+    width: 100% !important;
+    }
+}
+
+
+
+/* =============================================================================
+   8.   Comments
+   ============================================================================= */
+
+#comments {
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0 8px 6px -6px #ddd;
+       -moz-box-shadow: 0 8px 6px -6px #ddd;
+            box-shadow: 0 8px 6px -6px #ddd;
+    -ms-word-wrap: break-word;
+        word-wrap: break-word;
+}
+
+/*  ----- Comment Heading -----  */
+
+#comments .comments-title,
+#comments #reply-title {
+    font-size: 24px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    padding: 5px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/*  ----- Comment Nav -----  */
+
+#comments .navigation-comment {
+    padding: 5px 15px;
+    overflow: hidden;
+}
+
+#comments .navigation-comment .previous {
+    float: left;
+}
+
+#comments .navigation-comment .next {
+    float: right;
+}
+
+#comments .navigation-comment .assistive-text {
+    display: none;
+}
+
+#comments #comment-nav-below {
+    margin: 10px 0;
+}
+
+/*  ----- Comment List -----  */
+
+#comments .comment-list {
+    margin: 0;
+    list-style: none;
+}
+
+#comments .comment-list .comment-container {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 15px;
+}
+
+#comments .comment-list .comment-container .comment-author img {
+    margin: 8px 10px 0 0;
+}
+
+#comments > ol > li,
+#comments > ul.children > li {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#comments > ol > li > ul.children > li .comment-container {
+    border-left: 1px solid #ddd;
+}
+
+#comments .bypostauthor > .comment-container {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border-right: 5px solid #002149;
+}
+
+#comments ol ul.children {
+    list-style: none;
+}
+
+#comments .comment-list .comment-container .reply {
+    text-align: right;
+}
+
+/*  ----- Comment Form -----  */
+
+#comments #commentform {
+    padding: 5px 15px;
+}
+
+#comments #commentform p[class*="comment-form"] {
+    margin-bottom: 5px;
+}
+
+#comments #commentform .form-allowed-tags code {
+    white-space: inherit;
+}
+
+
+
+/* =============================================================================
+   9.  Post Navigation
+   ============================================================================= */
+
+#nav-below {
+    border: 1px solid #ddd;
+    padding: 5px 15px 7px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+#nav-below .assistive-text {
+    display: none;
+}
+
+#nav-below .previous {
+    float: left;
+    text-align: left;
+}
+
+#nav-below .next {
+    float: right;
+    text-align: right;
+}
+/* =============================================================================
+   10.  Widgets
+   ============================================================================= */
+
+#secondary .widget {
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0 8px 6px -6px #ddd;
+       -moz-box-shadow: 0 8px 6px -6px #ddd;
+            box-shadow: 0 8px 6px -6px #ddd;
+    -ms-word-wrap: break-word;
+        word-wrap: break-word;
+}
+
+#secondary .widget .widget-content {
+    padding: 10px 15px;
+}
+
+#secondary .widget .widget-title {
+    padding: 5px 15px 7px;
+    font-family: 'Oswald',sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 34px;
+    border-bottom: 1px solid #ddd;
+    -ms-word-wrap: break-word;
+        word-wrap: break-word;
+}
+
+/*  ----- List -----  */
+
+#secondary .widget ul {
+    list-style: none;
+    margin: 0;
+}
+
+#secondary .widget ul ul.children{
+    padding: 0 0 0 15px;
+}
+
+#secondary .widget ul li {
+    margin-bottom: 5px;
+}
+
+/*  ----- Form Elements -----  */
+
+#secondary .widget select,
+#secondary .widget button, 
+#secondary .widget input,
+#secondary .widget select,
+#secondary .widget textarea {
+    width: 100%;
+}
+
+/*  ----- WP Calendar -----  */
+
+#secondary .widget #calendar_wrap caption {
+    text-align: center;
+    font-weight: bold;
+}
+
+#secondary .widget #calendar_wrap table {
+    border: 1px solid #ddd;
+}
+
+#secondary .widget #calendar_wrap table th {
+    background-color: #f7f7f7;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+#secondary .widget #calendar_wrap table td {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+/*  ----- Text Widget -----  */
+
+#secondary .widget div select,
+#secondary .widget div button, 
+#secondary .widget div input,
+#secondary .widget div select,
+#secondary .widget div textarea {
+    margin: 0;
+    width: 100%;
+}
+
+/*  ----- Nav Menu -----  */
+
+#secondary .widget div ul {
+    padding: 0;
+}
+
+#secondary .widget div ul ul.sub-menu {
+    padding: 0 15px 10px;
+}
+
+#secondary .widget div ul ul.sub-menu ul.sub-menu {
+    padding: 0 0 0 15px;
+}
+
+/*  ----- RSS -----  */
+
+/*  ----- Search -----  */
+
+#secondary .widget .searchform {
+    max-width: 100%;
+}
+
+#secondary .widget .searchform .assistive-text {
+    display: none;
+}
+
+@media (min-width: 320px) {
+    #secondary .widget .searchform input[type="search"] {
+        max-width: 70%;
+    }
+
+    #secondary .widget .searchform input[type="submit"] {
+        max-width: 23%;
+        padding: 4.5px 5px 6.5px;
+    }
+}
+
+@media (max-width: 320px) {
+    #secondary .widget .searchform input[type="search"] {
+        width: 95%;
+    }
+
+    #secondary .widget .searchform input[type="submit"] {
+        width: 100%;
+        padding: 4.5px 5px 6.5px;
+    }
+}
+
+@media (min-width: 480px) {
+    #secondary .widget .searchform input[type="search"] {
+        max-width: 81%;
+    }
+
+    #secondary .widget .searchform input[type="submit"] {
+        max-width: 16%;
+        padding: 4px 5px 6px;
+    }
+}
+
+@media (min-width: 767px) {
+    #secondary .widget .searchform input[type="search"] {
+        max-width: 70%;
+    }
+
+    #secondary .widget .searchform input[type="submit"] {
+        max-width: 23%;
+        padding: 4.5px 5px 6px;
+    }
+}
+
+@media (min-width: 980px) { 
+    #secondary .widget .searchform input[type="search"] {
+        max-width: 72%;
+    }
+
+    #secondary .widget .searchform input[type="submit"] {
+        max-width: 23%;
+        padding: 3.8px 5px 6px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #secondary .widget .searchform input[type="search"] {
+        max-width: 73%;
+    }
+
+    #secondary .widget .searchform input[type="submit"] {
+        max-width: 23%;
+        padding: 4.5px 5px 6px;
+    }
+}
+
+
+/* =============================================================================
+   11.  Footer
+   ============================================================================= */
+
+#footer {
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#footer .site-info {
+    float: left;
+    text-align: left;
+    margin: 0;
+}
+
+#footer .site-credits {
+    float: right;
+    text-align: right;
+    margin: 0;
+}
+
+
+
+/* =============================================================================
+   12.  Helper Class & Override Bootstrap Style
+   ============================================================================= */
+
+/*  ----- WordPress Class -----  */
+
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    max-width: 100%;
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none !important;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0 !important;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 12px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.gallery-caption {
+}
